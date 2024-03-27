@@ -9,12 +9,13 @@ import AppContext from '../../context/AppContext';
 
 function CartItem({ data }) {
 
-  const { id, thumbnail, title, price } = data;
+  const { id, thumbnail, title, price, quantity } = data;
 
   const { cartItems, setCartItems } = useContext(AppContext);
 
   const handleRemoveItem = () => {
     const updatedItems = cartItems.filter((item) => item.id != id);
+
     setCartItems(updatedItems);
   };
 
@@ -29,6 +30,7 @@ function CartItem({ data }) {
       <div className="cart-item-content">
         <h3 className="cart-item-title">{title}</h3>
         <h3 className="cart-item-price">{formatCurrency(price, 'BRL')}</h3>
+        <h3 className="cart-item-quantity">{`QTD: ${quantity}`}</h3>
 
         <button
           type="button"

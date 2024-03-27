@@ -9,15 +9,7 @@ function Cart() {
 
   const { cartItems, isCartVisible } = useContext(AppContext);
 
-  // const calculateTotalPrice = () => {
-  //   let totalPrice = 0;
-  //   cartItems.map((cartItem) => {
-  //     totalPrice = totalPrice + cartItem.price;
-  //   });
-  //   return totalPrice;
-  // };
-
-  const totalPrice = cartItems.reduce((acumulator, item) => acumulator + item.price, 0);
+  const totalPrice = cartItems.reduce((acumulator, item) => acumulator + item.price * item.quantity, 0);
 
   return (
     <section className={`cart ${isCartVisible ? 'cart--active' : ''}`}>

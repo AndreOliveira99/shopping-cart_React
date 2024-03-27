@@ -23,6 +23,12 @@
   font-weight: 500;
 }
 
+.cart-item-quantity {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .cart-item-content {
   padding: 0 35px 0 10px;
 }

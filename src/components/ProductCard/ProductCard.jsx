@@ -2,17 +2,32 @@ import React, { useContext } from 'react';
 import propTypes from 'prop-types';
 import { FaCartPlus } from 'react-icons/fa';
 import formatCurrency from '../../utils/formatCurrency';
+import { cloneDeep } from 'lodash';
 
 import './ProductCard.css';
 import AppContext from '../../context/AppContext';
 
 function ProductCard({ data }) {
 
-  const { title, thumbnail, price } = data;
+  const { title, thumbnail, price, id } = data;
 
   const { cartItems, setCartItems } = useContext(AppContext);
 
-  const handleAddCart = () => setCartItems([...cartItems, data]);
+  const handleAddCart = () => {
+    data.quantity = 1;
+    let newItem = true;
+
+    let updatedCartItems = cloneDeep(cartItems);
+
+    updatedCartItems.forEach((item) => {
+      if (item.id == id) {
+        item.quantity += 1; 
+        newItem = false;
+      }
+    });
+
+    newItem ? setCartItems([...cartItems, data]) : setCartItems(updatedCartItems);
+  };
 
   return (
     <section className="product-card">
